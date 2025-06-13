@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sesiones con Psicólogo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f3f3;
+      text-align: center;
+    }
+    .container {
+      width: 80%;
+      margin: auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      background-color: #d4a373;
+      display: inline-block;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    .horario {
+      border: 2px solid #f4a261;
+      padding: 10px;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+    .tipo, .reserva {
+      border: 2px solid #2a9d8f;
+      padding: 10px;
+      display: inline-block;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin: 10px;
+      border-radius: 5px;
+    }
+    .tipo:hover, .reserva:hover {
+      background-color: #2a9d8f;
+      color: white;
+    }
+    .mensaje {
+      font-style: italic;
+      margin-top: 20px;
+      color: #6c757d;
+    }
+    .agenda {
+      display: none;
+      margin-top: 20px;
+      border: 2px solid #f4a261;
+      padding: 15px;
+      border-radius: 8px;
+    }
+    select {
+      padding: 8px;
+      margin: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #2a9d8f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #21867a;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px auto;
+      max-width: 600px;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 10px;
+    }
+    th {
+      background-color: #d4a373;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title">Sesiones con Psicólogo</div>
+
+    <div class="horario">
+      <h3>Horarios</h3>
+      <p>Lunes - Viernes</p>
+      <p>8:00 am - 3:00 pm</p>
+    </div>
+
+    <div>
+      <h3>Tipos de Terapia</h3>
+      <div class="tipo" onclick="mostrarFormulario('Terapia Individual')">Terapia Individual</div>
+      <div class="tipo" onclick="mostrarFormulario('Terapia de Pareja')">Terapia de Pareja</div>
+      <div class="tipo" onclick="mostrarFormulario('Terapia Familiar')">Terapia Familiar</div>
+    </div>
+
+    <!-- TABLA DE PRECIOS -->
+    <table>
+      <thead>
+        <tr>
+          <th>Tipo de Terapia</th>
+          <th>Precio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Terapia Individual</td>
+          <td>$500 MXN</td>
+        </tr>
+        <tr>
+          <td>Terapia de Pareja</td>
+          <td>$800 MXN</td>
+        </tr>
+        <tr>
+          <td>Terapia Familiar</td>
+          <td>$900 MXN</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- FORMULARIO DE RESERVA -->
+    <div id="formulario-reserva" class="agenda">
+      <h3>Reservar sesión - <span id="tipo-seleccionado"></span></h3>
+      <label for="dia">Selecciona un día:</label>
+      <select id="dia">
+        <option value="">--Seleccionar--</option>
+        <option>Lunes</option>
+        <option>Martes</option>
+        <option>Miércoles</option>
+        <option>Jueves</option>
+        <option>Viernes</option>
+      </select><br />
+
+      <label for="hora">Selecciona una hora:</label>
+      <select id="hora">
+        <option value="">--Seleccionar--</option>
+        <option>8:00 am</option>
+        <option>9:00 am</option>
+        <option>10:00 am</option>
+        <option>11:00 am</option>
+        <option>12:00 pm</option>
+        <option>1:00 pm</option>
+        <option>2:00 pm</option>
+        <option>3:00 pm</option>
+      </select><br />
+
+      <button onclick="confirmarReserva()">Confirmar Reserva</button>
+    </div>
+
+    <p class="mensaje">Y recuerda, tú vales mucho y tus órganos también y esta paguina fue hecha por fines educativos.</p>
+  </div>
+
+  <script>
+    function mostrarFormulario(tipo) {
+      document.getElementById('formulario-reserva').style.display = 'block';
+      document.getElementById('tipo-seleccionado').innerText = tipo;
+    }
+
+    function confirmarReserva() {
+      const tipo = document.getElementById('tipo-seleccionado').innerText;
+      const dia = document.getElementById('dia').value;
+      const hora = document.getElementById('hora').value;
+
+      if (!dia || !hora) {
+        alert("Por favor, selecciona un día y una hora.");
+        return;
+      }
+
+      alert(`Has reservado una sesión de ${tipo} el ${dia} a las ${hora}. ¡Gracias!`);
+    }
+  </script>
+</body>
+</html>
